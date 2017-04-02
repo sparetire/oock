@@ -1,0 +1,36 @@
+{
+  "name": "oock",
+  "version": "1.0.0",
+  "description": "A mock server for development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "oock": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparetire/oock.git"
+  },
+  "keywords": [
+    "mock"
+  ],
+  "author": "Sparetire",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sparetire/oock/issues"
+  },
+  "homepage": "https://github.com/sparetire/oock#readme",
+  "dependencies": {
+    "glob": "^7.1.1",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.1.1",
+    "supervisor": "^0.12.0",
+    "yargs": "^7.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1"
+  }
+}
