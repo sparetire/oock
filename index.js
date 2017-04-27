@@ -22,13 +22,27 @@ const argv = yargs.usage('Usage: oock [options] -d directory')
 	.epilog('By Sparetire')
 	.argv;
 
-const port = argv.p || argv.port;
-const host = argv.h || argv.host;
-const isWatch = argv.w || argv.watch;
-const directory = path.resolve(argv.d || argv.directory);
+const configArg = argv.config || argv.c;
+let configPath = '', configDir = '', config = {};
+if (configArg) {
+	configPath = path.resolve(process.cwd(), configArg);
+	config = require(configPath);
+	configDir = path.dirname(configPath);
+	config.directory = path.resolve(configDir, config.directory);
+}
+const port = config.port || argv.p || argv.port;
+const host = config.host || argv.h || argv.host;
+const isWatch = config.watch || argv.w || argv.watch;
+const directory = config.directory || path.resolve(argv.d || argv.directory);
 const server = path.resolve(__dirname, './lib/mock-server.js');
 
-let args = [directory, '-e', '\'js,json\'', '--', server, '-d', directory];
+let args = [];
+
+if (isWatch) {
+	args = args.concat(['-w', directory, '-e', '\'js,json\'']);
+}
+
+args = args.concat(['--', server]);
 
 if (port) {
 	args = args.concat(['-p', port]);
@@ -38,8 +52,8 @@ if (host) {
 	args = args.concat(['-h', host]);
 }
 
-if (isWatch) {
-	args.unshift('-w');
+if (directory) {
+	args = args.concat(['-d', directory]);
 }
 
 run(args);
