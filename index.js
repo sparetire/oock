@@ -39,7 +39,7 @@ const server = path.resolve(__dirname, './lib/mock-server.js');
 let args = [];
 
 if (isWatch) {
-	args = args.concat(['-w', directory, '-e', '\'js,json\'']);
+	args = args.concat(['-w', directory, '-e', 'js,json']);
 }
 
 args = args.concat(['--', server]);
