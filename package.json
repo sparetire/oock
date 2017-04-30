@@ -28,6 +28,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.1.1",
     "request": "^2.81.0",
+    "sha1": "^1.1.1",
     "supervisor": "^0.12.0",
     "yargs": "^7.0.2"
   },
