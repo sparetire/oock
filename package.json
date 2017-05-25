@@ -1,6 +1,6 @@
 {
   "name": "oock",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A mock server for development.",
   "main": "index.js",
   "scripts": {
