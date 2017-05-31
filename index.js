@@ -36,6 +36,7 @@ const argv = yargs.usage('Usage: oock [options] -d directory\n'
 
 let args = [],
  configPath = argv.c || argv.config,
+ config = {},
  proxy = argv.P || argv.proxy,
  to = argv.t || argv.to,
  cors = argv.C || argv.cors,
@@ -47,6 +48,12 @@ let args = [],
 
 if (configPath) {
 	configPath = path.resolve(process.cwd(), configPath);
+	config = require(configPath);
+	isWatch = config.watch;
+	modelDir = config.directory && path.resolve(path.dirname(configPath), config.directory) || '';
+	if (isWatch && modelDir) {
+		args = args.concat(['-w', modelDir, '-e', 'js,json']);
+	}
 	args = args.concat(['--', server, '-c', configPath]);
 } else {
 	isWatch && (args = args.concat(['-w', modelDir, '-e', 'js,json']));
